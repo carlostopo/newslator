@@ -46,6 +46,10 @@ class CRUDController extends Controller
     				'No se ha encontrado ninguna noticia.'
     				);
     	}
+    	foreach ($outputs as $output){
+    		$corto = substr($output->getBody(), 0,300).'...';
+    		$output->setBody($corto);
+    	}
     	return $this->render("PruebaMainBundle:Default:lista.html.twig", array('outputs'=>$outputs));
     }
     

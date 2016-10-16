@@ -8,6 +8,9 @@
 	<ol>
 		{% for noticia in noticias %}
 		<h3><li> {{ noticia.publisher }}: <a href="{{ noticia.source }}">{{ noticia.title }}</a></li></h3>
+		{% if noticia.image != 'No se ha podido obtener.' %}
+			<img src="{{ noticia.image }}">
+		{% endif %}
 		<p>{{ noticia.body }}</p>
 		{#<p>Fuente: {{ noticia.publisher }}<p>#}
 		{% endfor %}

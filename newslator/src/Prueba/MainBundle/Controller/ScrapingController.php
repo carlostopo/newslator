@@ -40,6 +40,7 @@ class ScrapingController extends Controller
 		return $this->render("PruebaMainBundle:Default:index.html.twig", array('noticias'=>$noticias));
 		
 	}
+	
 	public function guardaNoticiaAction($datos){
 		$em = $this->getDoctrine()->getManager();
 		$noticia_bbdd = $em->getRepository('PruebaMainBundle:Feed')->findOneBy(array('source'=>$datos['source']));
@@ -74,14 +75,34 @@ class ScrapingController extends Controller
 		$source = $item->link;
 		$source = strval($source);
 		
+		//body
 		$description = $item->description;
-		preg_match_all('/(.*?)<a href="/',$description,$descriptions);
-		$body = $descriptions[1][0];
-		$body = strip_tags($body);
+		$body = strip_tags($description);
 		$body = preg_replace("/&#?[a-z0-9]{2,8};/i","",$body);
+		$body = str_replace('Leer', '', $body);
 		
-		preg_match_all('/<img src="(.*?)"/',$description,$imagenes);
-		$image = $imagenes[1][0];
+		//imagen
+		preg_match_all('/src="(.*?)"/',$description,$imagenes);
+		if(count($imagenes)>1){
+			$errors = array_filter($imagenes);
+			if (!empty($errors)) {
+				$image = $imagenes[1][0];
+			}else {
+				$image = 'No se ha podido obtener.';
+			}
+		} else {
+			$image = 'No se ha podido obtener.';
+		}
+		
+		//imagen especial de el mundo
+		$areemplazar = '/http(.*?)\.xml/';
+		preg_match_all($areemplazar,$image,$imagenes);
+		if(count($imagenes)>0){
+			$errors = array_filter($imagenes);
+			if (!empty($errors)) {
+				$image = 'No se ha podido obtener.';
+			}
+		}	
 		
 		$date = $item->pubDate;
 		$date = strval($date);
@@ -123,7 +144,17 @@ class ScrapingController extends Controller
 		$body = strip_tags($body);
 		$body = preg_replace("/&#?[a-z0-9]{2,8};/i","",$body);
 		
-		$image = 'No se encuentra.';
+		preg_match_all('/src="(.*?)"/',$description,$imagenes);
+		if(count($imagenes)>1){
+			$errors = array_filter($imagenes);
+			if (!empty($errors)) {
+				$image = $imagenes[1][0];
+			}else {
+				$image = 'No se ha podido obtener.';
+			}
+		} else {
+			$image = 'No se ha podido obtener.';
+		}
 	
 		$date = $item->pubDate;
 		$date = strval($date);
@@ -159,14 +190,21 @@ class ScrapingController extends Controller
 		$source = str_replace('?utm_source=rss-noticias&utm_medium=feed&utm_campaign=portada', '', $source);
 	
 		$description = $item->description;
-		$description = strval($description);
-		preg_match_all('/(.*?)<img/',$description,$bodies);
-		$body = $bodies[1][0];
-		$body = strip_tags($body);
+		$body = strip_tags($description);
 		$body = preg_replace("/&#?[a-z0-9]{2,8};/i","",$body);
 		
+		//image
 		preg_match_all('/src="(.*?)"/',$description,$imagenes);
-		$image = $imagenes[1][0];
+		if(count($imagenes)>1){
+			$errors = array_filter($imagenes);
+			if (!empty($errors)) {
+				$image = $imagenes[1][0];
+			}else {
+				$image = 'No se ha podido obtener.';
+			}
+		} else {
+			$image = 'No se ha podido obtener.';
+		}
 	
 		$date = $item->pubDate;
 		$date = strval($date);
@@ -203,18 +241,22 @@ class ScrapingController extends Controller
 		$source = strval($source);
 	
 		$description = $item->description;
-		$description = strval($description);
-		
-		//body
-		preg_match_all('/<p>(.*)/',$description,$bodys);
-		$body = $bodys[1][0];
-		$body = strip_tags($body);
+		$body = strip_tags($description);
 		$body = preg_replace("/&#?[a-z0-9]{2,8};/i","",$body);
 		
 		//image
 		preg_match_all('/src="(.*?)"/',$description,$imagenes);
-		$image = $imagenes[1][0];
-	
+		if(count($imagenes)>1){
+			$errors = array_filter($imagenes);
+			if (!empty($errors)) {
+				$image = $imagenes[1][0];
+			}else {
+				$image = 'No se ha podido obtener.';
+			}
+		} else {
+			$image = 'No se ha podido obtener.';
+		}
+			
 		//date
 		$date = $item->pubDate;
 		$date = strval($date);
@@ -253,13 +295,23 @@ class ScrapingController extends Controller
 		$source = $item->id;
 		$source = strval($source);
 	
-		$body = $item->summary;
-		$body_all = strval($body);
-		$body =strip_tags($body_all);
+		$summary = $item->summary;
+		$body = strval($summary);
+		$body =strip_tags($body);
 		$body = preg_replace("/&#?[a-z0-9]{2,8};/i","",$body);
 		
 		//image
-		$image = 'No se encuentra.';
+		preg_match_all('/src="(.*?)"/',$summary,$imagenes);
+		if(count($imagenes)>1){
+			$errors = array_filter($imagenes);
+			if (!empty($errors)) {
+				$image = $imagenes[1][0];
+			}else {
+				$image = 'No se ha podido obtener.';
+			}
+		} else {
+			$image = 'No se ha podido obtener.';
+		}
 		
 		//date
 		$date = $item->published;
