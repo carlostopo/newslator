@@ -1,13 +1,42 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>
+{% block title %}Newslator{% endblock %}
+</title>
+
+{% block stylesheets %} 
+{% stylesheets
+'bundles/bootstrap/css/bootstrap-theme.css'
+'bundles/bootstrap/css/bootstrap.css'
+'bundles/fontawesome/css/font-awesome.css'
+'bundles/misajustes/css/misestilos.css' filter = 'cssrewrite'%}
+<link rel='stylesheet' href="{{ asset_url }}" />
+{% endstylesheets %} 
+{% endblock %}
+
+{# <link rel="icon"type="image/x-icon" href="{{ asset('favicon.ico') }}" />#}
+</head>
+
+<body role="document">
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+          	<li><a href= "{{ path('newslator_inicio') }}"><i class="fa fa-newspaper-o fa-2x"> Noticias</i></a></li>
+            <li><a href= "{{ path('newslator_lista') }}"><i class="fa fa-list fa-2x"> Listado</i></a></li>
+            <li><a href= "{{ path('newslator_contacto') }}"><i class="fa fa-envelope-o fa-2x"> Contacto</i></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+    </nav>
+    <br>
+
+	{% block body %} {% endblock %} 
+	
+	{% block javascripts %}
+	<script src="{{ asset('/bundles/bootstrap/js/bootstrap.js') }}"></script>
+	{% endblock %}
+</body>
 </html>

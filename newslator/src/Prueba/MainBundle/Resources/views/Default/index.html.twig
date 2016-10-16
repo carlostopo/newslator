@@ -1,1 +1,16 @@
-Hello {{ name }}!
+{% extends "::base.html.twig" %} 
+
+{% block title %}Newslator - Bienvenido{% endblock %}
+
+{% block body %}
+<div class="col-sm-12">
+	<br><br>
+	<ol>
+		{% for noticia in noticias %}
+		<h3><li> {{ noticia.publisher }}: <a href="{{ noticia.source }}">{{ noticia.title }}</a></li></h3>
+		<p>{{ noticia.body }}</p>
+		{#<p>Fuente: {{ noticia.publisher }}<p>#}
+		{% endfor %}
+	</ol>
+</div>
+{% endblock %}

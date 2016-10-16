@@ -1,3 +1,31 @@
-prueba_main_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: PruebaMainBundle:Default:index }
+newslator_inicio:
+    path:     /
+    defaults: { _controller: PruebaMainBundle:Scraping:leerNoticiasAhora }
+
+newslator_lista:
+    path:     /lista
+    defaults: { _controller: PruebaMainBundle:CRUD:listaNoticias }
+    
+newslator_contacto:
+    path:     /contacto
+    defaults: { _controller: PruebaMainBundle:Inicio:contacto }
+    
+borrar_noticia:
+    path:     /borrar/{id}
+    defaults: { _controller: PruebaMainBundle:CRUD:borrarNoticia }
+
+crear_noticia:
+    path:     /crear
+    defaults: { _controller: PruebaMainBundle:CRUD:crearNoticia }
+
+editar_noticia:
+    path:     /editar/{id}
+    defaults: { _controller: PruebaMainBundle:CRUD:editarNoticia }
+
+#leer_noticia:
+#    path:     /leer/{id}
+#    defaults: { _controller: PruebaMainBundle:CRUD:leerNoticiaHoy }
+
+#scrap_web:
+#    path:     /scrap
+#    defaults: { _controller: PruebaMainBundle:Scraping:laRazonRSS }

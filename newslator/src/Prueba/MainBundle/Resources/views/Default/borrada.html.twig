@@ -1,0 +1,36 @@
+{% extends "::base.html.twig" %} 
+
+{% block title %}BE - Deleted{% endblock %}
+
+{% block body %}
+<div class="container theme-showcase" role="main">
+	<br><br><br><br>
+	<h4 class="alert alert-danger">Noticia con Id: {{ id }} borrada. Si ha sido un error, guarde la informacion
+	e insértela de nuevo en la base de datos mediante el botón "Crear".</h4><br>
+	<table class="table table-condensed">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Título</th>
+				<th>Descripción</th>
+				<th>Imagen</th>
+				<th>Noticia</th>
+				<th>Periódico</th>
+				<th>Fecha</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>{{ noticia.id }}</td>
+				<td>{{ noticia.title }}</td>
+				<td>{{ noticia.body }}</td>
+				<td>{{ noticia.image }}</td>
+				<td>{{ noticia.source }}</td>
+				<td>{{ noticia.publisher }}</td>
+				<td>{{ noticia.date |date('Y-m-d') }}</td>		
+			</tr>
+		</tbody>
+	</table>
+</div>
+{% endblock %}
+

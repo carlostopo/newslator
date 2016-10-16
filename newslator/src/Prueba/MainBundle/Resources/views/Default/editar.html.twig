@@ -1,0 +1,60 @@
+{% extends "::base.html.twig" %} 
+
+{% block title %}Newslator - Editar{% endblock %}
+
+{% block body %}
+<div class="container theme-showcase" role="main">
+	<br><br>
+	<h4 class="alert alert-warning">Editando la noticia con Id: {{ id }}.</h4><br>
+	{{ form_start(form) }}
+	    <table>
+    		<tr>
+    			<td></td>
+    			<td><a href= "{{ path('newslator_lista') }}">Cancelar</a></td>
+    			<td></td>
+    		</tr>
+	     	<tr>
+	    		<td class="form_error">{{ form_errors(form) }}</td>
+	    		<td></td>
+	    		<td></td>
+    		</tr>
+    		<tr>
+	    		<td class="form_error">{{ form_errors(form.title) }}</td>
+	    		<td class="form_label">{{ form_label(form.title) }}</td>
+	    		<td class="form_input">{{ form_widget(form.title) }}</td>
+    		</tr>
+    		<tr>
+	    		<td class="form_error">{{ form_errors(form.body) }}</td>
+	    		<td class="form_label">{{ form_label(form.body) }}</td>
+	    		<td class="form_input">{{ form_widget(form.body) }}</td>
+    		</tr>
+    		<tr>
+	    		<td class="form_error">{{ form_errors(form.image) }}</td>
+	    		<td class="form_label">{{ form_label(form.image) }}</td>
+	    		<td class="form_input">{{ form_widget(form.image) }}</td>
+    		</tr>
+    		<tr>
+	    		<td class="form_error">{{ form_errors(form.source) }}</td>
+	    		<td class="form_label">{{ form_label(form.source) }}</td>
+	    		<td class="form_input">{{ form_widget(form.source) }}</td>
+    		</tr>
+    		<tr>
+	    		<td class="form_error">{{ form_errors(form.publisher) }}</td>
+	    		<td class="form_label">{{ form_label(form.publisher) }}</td>
+	    		<td class="form_input">{{ form_widget(form.publisher) }}</td>
+    		</tr>
+    		<tr>
+	    		<td class="form_error">{{ form_errors(form.date) }}</td>
+	    		<td class="form_label">{{ form_label(form.date) }}</td>
+	    		<td class="form_input">{{ form_widget(form.date) }}</td>
+    		</tr>
+    		<tr>
+    			<td></td>
+    			<td><br>{{ form_widget(form.save) }}</td>
+    			<td></td>
+    		</tr>
+	    </table> 
+	    {{ form_end(form) }}
+</div>
+{% endblock %}
+

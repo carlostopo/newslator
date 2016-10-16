@@ -1,0 +1,10 @@
+eclipse.preferences.version=1
+encoding//app/Resources/views/base.html.twig=UTF-8
+encoding//src/Prueba/MainBundle/Controller/CRUDController.php=UTF-8
+encoding//src/Prueba/MainBundle/Controller/ScrapingController.php=UTF-8
+encoding//src/Prueba/MainBundle/Form/FeedType.php=UTF-8
+encoding//src/Prueba/MainBundle/Resources/views/Default/borrada.html.twig=UTF-8
+encoding//src/Prueba/MainBundle/Resources/views/Default/contacto.html.twig=UTF-8
+encoding//src/Prueba/MainBundle/Resources/views/Default/editar.html.twig=UTF-8
+encoding//src/Prueba/MainBundle/Resources/views/Default/index.html.twig=UTF-8
+encoding//src/Prueba/MainBundle/Resources/views/Default/lista.html.twig=UTF-8
